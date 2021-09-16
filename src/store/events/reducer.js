@@ -1,4 +1,4 @@
-import reducer from '../../../utils/reducer';
+import reducer from 'src/utils/reducer';
 
 import {types} from './actions';
 
@@ -8,7 +8,7 @@ const initState = {
 };
 
 export default reducer(initState, {
-  [types.FETCH_EVENTS]: (state, action) => {
+  [types.FETCH_EVENTS]: state => {
     return {
       ...state,
       isFetching: true,
@@ -23,7 +23,7 @@ export default reducer(initState, {
       isFetching: false,
     };
   },
-  [types.FETCH_EVENTS_FAIL]: (state, action) => {
+  [types.FETCH_EVENTS_FAIL]: state => {
     return {
       ...state,
       data: [],

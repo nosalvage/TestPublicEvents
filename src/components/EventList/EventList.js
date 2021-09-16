@@ -1,25 +1,15 @@
-import React from 'react';
+import React, {useCallback} from 'react';
+import {FlatList} from 'react-native';
 import PropTypes from 'prop-types';
 
-import styled from 'styled-components/native';
+import {EventListItem} from './EventListItem';
 
-import EventListItem from './EventListItem';
+const keyExtractor = item => item.id;
 
-const FlatList = styled.FlatList``;
-
-const getKeyExtractor = (item) => item.id;
-
-const EventList = (props) => {
-  const {
-    data = [],
-    onPress,
-  } = props;
-
-  const renderItem = ({ item }) => (
-    <EventListItem
-      item={item}
-      onPress={onPress}
-    />
+const EventList = ({data = [], onPress}) => {
+  const renderItem = useCallback(
+    ({item}) => <EventListItem item={item} onPress={onPress} />,
+    [onPress],
   );
 
   return (
@@ -27,7 +17,7 @@ const EventList = (props) => {
       data={data}
       showsVerticalScrollIndicator={false}
       renderItem={renderItem}
-      keyExtractor={getKeyExtractor}
+      keyExtractor={keyExtractor}
     />
   );
 };
@@ -37,4 +27,4 @@ EventListItem.propTypes = {
   onPress: PropTypes.func,
 };
 
-export default EventList;
+export {EventList};

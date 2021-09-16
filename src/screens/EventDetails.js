@@ -1,9 +1,7 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {ScrollView, Text} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-
-
-const ScrollView = styled.ScrollView``;
 
 const Container = styled.View`
   flex: 1;
@@ -34,47 +32,36 @@ const Image = styled.Image`
   height: 150px;
 `;
 
-const Text = styled.Text``;
-
 const TextBold = styled.Text`
   font-weight: bold;
 `;
 
 const Body = styled.View`
   padding-top: 14px;
-`
+`;
 
 const Row = styled.View`
   padding-bottom: 10px;
-`
+`;
 
-
-const EventDetails = (props) => {
-  const { route } = props;
+export const EventDetails = ({route}) => {
   const data = route.params?.data;
-
 
   if (!data) {
     return (
       <ContainerCenter>
         <Text>Нет данных</Text>
       </ContainerCenter>
-    )
+    );
   }
-  const {
-    actor,
-    repo,
-  } = data;
+  const {actor, repo} = data;
 
   return (
     <Container>
       <ContainerArea edges={['bottom']}>
         <ScrollView>
           <Title>{actor.login}</Title>
-          <Image
-            source={{ uri: actor.avatar_url }}
-            resizeMode="cover"
-          />
+          <Image source={{uri: actor.avatar_url}} resizeMode="cover" />
           <Body>
             <Row>
               <TextBold>Репозиторий:</TextBold>
@@ -90,6 +77,3 @@ const EventDetails = (props) => {
     </Container>
   );
 };
-
-
-export default EventDetails;

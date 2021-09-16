@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 const EventTouchable = styled.TouchableOpacity`
   margin-vertical: 4px;
@@ -16,21 +16,13 @@ const EventLogin = styled.Text`
   margin-horizontal: 18px;
 `;
 
-
-const EventListItem = (props) => {
-  const {
-    item = {},
-    onPress,
-  } = props;
-
+const EventListItem = ({item = {}, onPress}) => {
   const onPressByItem = () => {
     onPress(item);
-  }
+  };
 
   return (
-    <EventTouchable
-      onPress={onPressByItem}
-    >
+    <EventTouchable onPress={onPressByItem}>
       <EventLogin numberOfLines={1}>
         {item.actor?.login ?? 'Без названия'}
       </EventLogin>
@@ -43,4 +35,4 @@ EventListItem.propTypes = {
   onPress: PropTypes.func,
 };
 
-export default EventListItem;
+export {EventListItem};
