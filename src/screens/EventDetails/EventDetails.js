@@ -71,7 +71,10 @@ const EventDetails = (props) => {
       <ContainerArea edges={['bottom']}>
         <ScrollView>
           <Title>{actor.login}</Title>
-          <Image source={{ uri: actor.avatar_url }} resizeMode="cover" />
+          <Image
+            source={{ uri: actor.avatar_url }}
+            resizeMode="cover"
+          />
           <Body>
             <Row>
               <TextBold>Репозиторий:</TextBold>

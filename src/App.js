@@ -8,7 +8,6 @@ import {PersistGate} from 'redux-persist/integration/react';
 import RootNavigator from './navigation/RootNavigator';
 import configureStore from './redux/configureStore';
 
-enableScreens();
 
 const {store, persistor} = configureStore();
 

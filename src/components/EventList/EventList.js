@@ -7,6 +7,7 @@ import EventListItem from './EventListItem';
 
 const FlatList = styled.FlatList``;
 
+const getKeyExtractor = (item) => item.id;
 
 const EventList = (props) => {
   const {
@@ -20,9 +21,6 @@ const EventList = (props) => {
       onPress={onPress}
     />
   );
-
-  const getKeyExtractor = (item) => item.id;
-
 
   return (
     <FlatList
