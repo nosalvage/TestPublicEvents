@@ -7,7 +7,7 @@ import {Events, EventDetails} from '../screens';
 const MainStack = createStackNavigator();
 
 const MainNavigator = () => {
-  const defaultOptions = {headerTransparent: true};
+  const defaultOptions = {}; // headerTransparent: true
 
   return (
     <MainStack.Navigator

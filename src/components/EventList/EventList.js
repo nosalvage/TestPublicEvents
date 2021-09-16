@@ -12,20 +12,29 @@ const Separator = styled.View`
   background-color: #DDD:
 `;
 
-const EventList = ({onPress = () => {}, type, ...props}) => {
-  const renderItem = ({item, index}) => (
-    <EventListItem data={item} onPress={() => onPress(item.id)} />
+const EventList = (props) => {
+  const {
+    data = [],
+    onPress,
+  } = props;
+
+  const renderItem = ({ item }) => (
+    <EventListItem
+      data={item}
+      onPress={onPress}
+    />
   );
+
+  const getKeyExtractor = (item) => item.id;
 
   return (
     <FlatList
-      showsVerticalScrollIndicator={false}
-      ItemSeparatorComponent={() => <Separator />}
-      horizontal={false}
-      scrollEnabled
+      data={data}
+      showsVerticalScrollIndicator={false} // :TODO Нужно ли скрывать?
+      // ItemSeparatorComponent={() => <Separator />}
+      // scrollEnabled
       renderItem={renderItem}
-      keyExtractor={(item, index) => index}
-      {...props}
+      keyExtractor={getKeyExtractor}
     />
   );
 };
