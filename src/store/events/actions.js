@@ -19,7 +19,6 @@ export const fetchEvents =
   async dispatch => {
     try {
       dispatch({type: types.FETCH_EVENTS});
-      console.log('FETCH');
 
       const url = `${API_URL}/events`;
 
