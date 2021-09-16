@@ -30,23 +30,4 @@ export default reducer(initState, {
       isFetching: false,
     };
   },
-
-  // [types.FETCH_EVENT_DETAILS]: (state, action) => {
-  //   return {
-  //     ...state,
-  //     isFetchingDetails: true,
-  //   };
-  // },
-  // [types.FETCH_EVENT_DETAILS_SUCCESS]: (state, action) => {
-  //   return {
-  //     ...state,
-  //     isFetchingDetails: false,
-  //   };
-  // },
-  // [types.FETCH_EVENT_DETAILS_FAIL]: (state, action) => {
-  //   return {
-  //     ...state,
-  //     isFetchingDetails: false,
-  //   };
-  // },
 });

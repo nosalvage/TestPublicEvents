@@ -3,10 +3,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
 
+const ScrollView = styled.ScrollView``;
+
 const Container = styled.View`
   flex: 1;
-  padding-vertical: 10px;
-  padding-horizontal: 20px;
+  padding: 20px;
   background: white;
 `;
 
@@ -33,11 +34,19 @@ const Image = styled.Image`
   height: 150px;
 `;
 
-const Text = styled.Text`
+const Text = styled.Text``;
 
+const TextBold = styled.Text`
+  font-weight: bold;
 `;
 
-const ScrollView = styled.ScrollView``;
+const Body = styled.View`
+  padding-top: 14px;
+`
+
+const Row = styled.View`
+  padding-bottom: 10px;
+`
 
 
 const EventDetails = (props) => {
@@ -63,40 +72,21 @@ const EventDetails = (props) => {
         <ScrollView>
           <Title>{actor.login}</Title>
           <Image source={{ uri: actor.avatar_url }} resizeMode="cover" />
-          <Text>Репозиторий: {repo.name}</Text>
+          <Body>
+            <Row>
+              <TextBold>Репозиторий:</TextBold>
+              <Text>{repo.name}</Text>
+            </Row>
+            <Row>
+              <TextBold>Url репозитория:</TextBold>
+              <Text>{repo.url}</Text>
+            </Row>
+          </Body>
         </ScrollView>
       </ContainerArea>
     </Container>
   );
 };
 
-// {
-//   "actor": {
-//     "avatar_url": "https://avatars.githubusercontent.com/u/30645857?",
-//     "display_login": "navs82",
-//     "gravatar_id": "",
-//     "id": 30645857,
-//     "login": "navs82",
-//     "url": "https://api.github.com/users/navs82"
-//   },
-//   "created_at": "2021-09-16T06:07:48Z",
-//   "id": "18009060372",
-//   "payload": {
-//     "before": "059b1d1f8e2c0084f326a252d7d128f3929e473c",
-//     "commits": [[Object]],
-//     "distinct_size": 1,
-//     "head": "3a91a6f035e32d14b5658d8d81f0069628df9477",
-//     "push_id": 7945706284,
-//     "ref": "refs/heads/master",
-//     "size": 1
-//   },
-//   "public": true,
-//   "repo": {
-//     "id": 236274115,
-//     "name": "navs82/emacs_init",
-//     "url": "https://api.github.com/repos/navs82/emacs_init"
-//   },
-//   "type": "PushEvent"
-// }
 
 export default EventDetails;

@@ -7,10 +7,6 @@ import EventListItem from './EventListItem';
 
 const FlatList = styled.FlatList``;
 
-const Separator = styled.View`
-  height: 1px;
-  background-color: #DDD:
-`;
 
 const EventList = (props) => {
   const {
@@ -20,19 +16,18 @@ const EventList = (props) => {
 
   const renderItem = ({ item }) => (
     <EventListItem
-      data={item}
+      item={item}
       onPress={onPress}
     />
   );
 
   const getKeyExtractor = (item) => item.id;
 
+
   return (
     <FlatList
       data={data}
-      showsVerticalScrollIndicator={false} // :TODO Нужно ли скрывать?
-      // ItemSeparatorComponent={() => <Separator />}
-      // scrollEnabled
+      showsVerticalScrollIndicator={false}
       renderItem={renderItem}
       keyExtractor={getKeyExtractor}
     />
@@ -40,6 +35,7 @@ const EventList = (props) => {
 };
 
 EventListItem.propTypes = {
+  data: PropTypes.array,
   onPress: PropTypes.func,
 };
 

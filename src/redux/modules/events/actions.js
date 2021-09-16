@@ -4,13 +4,8 @@ export const types = {
   FETCH_EVENTS: 'events/FETCH_EVENTS',
   FETCH_EVENTS_SUCCESS: 'events/FETCH_EVENTS_SUCCESS',
   FETCH_EVENTS_FAIL: 'events/FETCH_EVENTS_FAIL',
-
-  // FETCH_EVENT_DETAILS: 'events/FETCH_EVENT_DETAILS',
-  // FETCH_EVENT_DETAILS_SUCCESS: 'events/FETCH_EVENT_DETAILS_SUCCESS',
-  // FETCH_EVENT_DETAILS_FAIL: 'events/FETCH_EVENT_DETAILS_FAIL',
 };
 
-// const API_URL = 'https://api.github.com/users/tater';
 const API_URL = 'https://api.github.com';
 
 
@@ -43,7 +38,6 @@ export const fetchEvents = (params = {}) => async dispatch => {
     }
 
     dispatch({ type: types.FETCH_EVENTS_SUCCESS, payload: result.data });
-    // console.log(data, ' data events >>');
   } catch (error) {
     // :TODO Выводить ошибку?
     dispatch({ type: types.FETCH_EVENTS_FAIL });

@@ -21,7 +21,7 @@ const Container = styled.View`
 `
 
 const BtnUpd = styled.TouchableOpacity`
-  margin-bottom: 10px;
+  margin-vertical: 10px;
   justify-content: center;
   align-items: center;
   height: 36px;
@@ -75,15 +75,14 @@ const BtnUpdate = (props) => {
 }
 
 const Events = () => {
-  // :TODO Не меняется isFetching, починить
   const { data, isFetching } = useSelector(eventsSelector);
   const dispatch = useDispatch();
   const { navigate } = useNavigation();
 
   const [isManualUpd, setManualUpd] = useState(false);
 
-  let timerManualUpd = useRef(null).current;
-  let timerAutoUpd = useRef(null).current; 
+  const timerManualUpd = useRef(null);
+  const timerAutoUpd = useRef(null);
 
   const isFocused = useIsFocused();
 
@@ -92,18 +91,18 @@ const Events = () => {
     if (isFocused) {
       updateAutoList();
     } else {
-      clearTimeout(timerAutoUpd);
+      clearTimeout(timerManualUpd.current);
+      clearTimeout(timerAutoUpd.current);
     }
-  }, [isFocused])
+  }, [isFocused, dispatch])
 
+  // 
   useEffect(() => {
-    updateList();
-
     return () => {
-      clearTimeout(timerManualUpd);
-      clearTimeout(timerAutoUpd);
+      clearTimeout(timerManualUpd.current);
+      clearTimeout(timerAutoUpd.current);
     }
-  }, [dispatch]);
+  }, []);
 
   const updateList = async () => {
     try {
@@ -115,10 +114,10 @@ const Events = () => {
     }
   }
 
-
   const updateAutoList = () => {
-    timerAutoUpd = setTimeout(() => {
-      updateAutoList
+    updateList();
+    timerAutoUpd.current = setTimeout(() => {
+      updateAutoList();
     }, TIME_AUTO_UPD);
   }
   const updateManualList = () => {
@@ -127,7 +126,7 @@ const Events = () => {
   }
 
   const startTimerManuallyUpdate = () => {
-    timerManualUpd = setTimeout(() => {
+    timerManualUpd.current = setTimeout(() => {
       setManualUpd(true);
     }, TIME_MANUALL_UPD);
   }
